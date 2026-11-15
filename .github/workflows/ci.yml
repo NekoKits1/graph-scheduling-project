@@ -14,7 +14,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Automatic tests (the hand-solved example)
-        run: python -m unittest discover -s tests -v
+      - name: Check every Python file compiles
+        run: python -m py_compile *.py
+      - name: Automatic tests (once some exist in tests/)
+        run: |
+          if ls tests/test_*.py >/dev/null 2>&1; then python -m unittest discover -s tests -v; else echo "No tests yet"; fi
       - name: Run the program on every table (must never crash)
         run: python main.py --all

@@ -8,6 +8,9 @@ The program reads a constraint table (.txt), builds the scheduling graph and its
 > This README is for the team: how the repo works and the names we all use.
 > The full explanation of the project, with a worked example, is in our Google Doc (team plan).
 
+> ⚠️ **Shared names — read section 4 before writing any code.**
+> Our files call each other's functions and pass the same data around. Use **exactly** the names and data formats of section 4: don't rename, don't change a format, don't add your own version. Need a new shared name? Ask the group first, then add it to section 4.
+
 ---
 
 ## 1. Run it
@@ -52,8 +55,7 @@ graph-scheduling-project/
 └── .github/           → CI and pull request template
 ```
 
-Each file already contains its functions with their exact names and a description of what they must do.
-**Your job: replace `raise NotImplementedError(...)` with the real code.** Don't rename or move functions: the other files call them.
+Each file starts with a short comment: who codes it, its issue, and the functions to write with their shared names. The code is ours to write.
 
 ---
 
@@ -120,11 +122,11 @@ Each file already contains its functions with their exact names and a descriptio
 4. `git push -u origin firstname/task`, open a pull request with `Closes #n`, add your checker as reviewer.
 5. The checker runs `python main.py` on a few tables, reads the code, makes sure they can explain it, approves and merges.
 
-**CI (GitHub Actions)** runs on every pull request: the automatic tests, then `python main.py --all` on every table. If it is red, the pull request can't be merged.
+**CI (GitHub Actions)** runs on every pull request: checks every file compiles, runs our tests, then `python main.py --all` on every table. If it is red, the pull request can't be merged.
 
 ---
 
 ## 7. Tests
 
-- `tests/test_example.py` holds the subject's example solved by hand (Google Doc, section 2). A test is **skipped** while its function is not written, and must **pass** once it is.
+- Each member writes the tests for their file in `tests/` (see `tests/README.md`), using the hand-solved example of the Google Doc (section 2) as expected results.
 - Every new table in `tables/` comes with its expected results written by hand (see `tables/README.md`).

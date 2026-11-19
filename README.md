@@ -127,7 +127,7 @@ Each file starts with a short comment: who codes it, its issue, and the function
 2. `git checkout main && git pull`, then `git checkout -b firstname/task`.
 3. Code in your own file. Run `python -m unittest discover -s tests -v`: your file's tests must pass.
 4. `git push -u origin firstname/task`, open a pull request with `Closes #n`, add your checker as reviewer.
-5. The checker runs `python main.py` on a few tables, reads the code, makes sure they can explain it, approves and merges.
+5. The checker runs `python main.py` on a few tables, goes through the checklist of that part (Google Doc, section 6), makes sure they can explain the code, approves and merges.
 
 **CI (GitHub Actions)** runs on every pull request: checks every file compiles, runs our tests, then `python main.py --all` on every table. If it is red, the pull request can't be merged.
 

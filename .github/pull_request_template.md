@@ -4,4 +4,4 @@ Closes #
 
 **How I tested it** (which tables, does `python -m unittest discover -s tests -v` pass for my file?):
 
-**For the checker:** run `python main.py` on a few tables, read the code, make sure you can explain it, then approve and merge.
+**For the checker:** run `python main.py` on a few tables, tick every box of this part's checklist (Google Doc, section 6), make sure you can explain the code, then approve and merge.

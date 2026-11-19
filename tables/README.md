@@ -1,5 +1,5 @@
 # tables/
-Our constraint tables (.txt), then the teacher's official ones. Owner: Member 1 (issue #2) — everyone can add.
+Our constraint tables (.txt), then the teacher's official ones. Owner: Member 1 (issue #2) — every member adds two tables of their own.
 
 - Name them `table_NN_short-description.txt` so they appear in order in the menu.
 - One line per task: `task duration predecessors...`

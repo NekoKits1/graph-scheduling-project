@@ -27,13 +27,15 @@ No installation needed: Python 3.10+ only.
 
 ## 2. Team
 
-| Member | Codes | File | Checks | Issue |
+| Member | Codes | Files | Checks | Issue |
 |---|---|---|---|---|
-| Member 1 | Reading a table, displaying it, our test tables | `reader.py`, `tables/` | Member 2 | #2 |
-| Member 2 | Edges with 0 and N+1, value matrix and their display | `graph.py` | Member 3 | #3 |
-| Member 3 | The six properties, cycle detection | `checks.py` | Member 4 | #4 |
-| Member 4 | Ranks, earliest and latest dates | `calendar_calc.py` | Member 5 | #5 |
-| Member 5 | Floats, critical paths, main loop, traces | `critical.py`, `main.py` | Member 1 | #6 |
+| Member 1 | Reading a table and displaying it; the menu loop and `--all` | `reader.py`, `main.py` | Member 2 | #2 |
+| Member 2 | Edges with 0 and N+1, value matrix, their display, predecessors / successors | `graph.py` | Member 3 | #3 |
+| Member 3 | The six properties, elimination of entry points (cycle detection) | `checks.py` | Member 4 | #4 |
+| Member 4 | Ranks, earliest and latest dates, floats; saving each run in `traces/` | `calendar_calc.py`, `trace.py` | Member 5 | #5 |
+| Member 5 | All critical paths, the final results table | `critical.py` | Member 1 | #6 |
+
+Everyone also adds **two tables** of their own to `tables/` (with results solved by hand) and writes the **tests of their own file** in `tests/`. The checker uses the checklist of that part in the Google Doc (section 6) before approving.
 
 Replace "Member N" with our names.
 
@@ -43,12 +45,13 @@ Replace "Member N" with our names.
 
 ```
 graph-scheduling-project/
-├── main.py            → the menu loop (Member 5)
+├── main.py            → the menu loop (Member 1)
 ├── reader.py          → read a .txt table, display it (Member 1)
 ├── graph.py           → edges, value matrix, predecessors / successors (Member 2)
-├── checks.py          → the six properties, cycle detection (Member 3)
-├── calendar_calc.py   → ranks, earliest and latest dates (Member 4)
-├── critical.py        → floats, critical paths (Member 5)
+├── checks.py          → the six properties, elimination of entry points (Member 3)
+├── calendar_calc.py   → ranks, earliest and latest dates, floats (Member 4)
+├── trace.py           → recording(path): saves each run in traces/ (Member 4)
+├── critical.py        → critical paths, final results table (Member 5)
 ├── tables/            → our .txt tables, then the teacher's
 ├── traces/            → saved outputs for Moodle
 ├── tests/             → automatic tests (the hand-solved example)
@@ -69,6 +72,7 @@ Each file starts with a short comment: who codes it, its issue, and the function
 | `n` | `int` — number of real tasks; vertices go from `0` to `n + 1` | `5` |
 | `edges` | `list` of tuples `(start, end, weight)` | `[(0, 1, 0), (1, 3, 1), …]` |
 | `matrix` | `list` of `n + 2` lists of `n + 2` cells; `None` = no edge (printed `*`) | `matrix[2][4] == 2` |
+| `rounds`, `remaining` | `rounds`: list of lists, the vertices removed at each round; `remaining`: vertices left at the end (`[]` = no cycle) | `[[0], [1, 2], [3, 4], [5], [6]]`, `[]` |
 | `ranks` | `dict {vertex: rank}`, or `None` if there is a cycle | `{5: 3}` |
 | `earliest`, `latest`, `floats` | `dict {vertex: int}` | `earliest[5] == 6` |
 | `critical_paths` | `list` of lists of vertices | `[[0, 2, 4, 5, 6]]` |
@@ -84,12 +88,15 @@ Each file starts with a short comment: who codes it, its issue, and the function
 | `build_matrix(edges, n)` | `matrix` | `graph.py` |
 | `display_matrix(matrix)` | — (prints) | `graph.py` |
 | `predecessors(matrix, v)` / `successors(matrix, v)` | list of vertices | `graph.py` |
+| `eliminate_entry_points(matrix, show_trace)` | `rounds, remaining` (prints each round if `show_trace`) | `checks.py` |
 | `is_scheduling_graph(matrix)` | `True` / `False` (prints each check) | `checks.py` |
-| `compute_ranks(matrix)` | `ranks` or `None` (prints the rounds) | `calendar_calc.py` |
+| `compute_ranks(matrix)` | `ranks` or `None` (uses `eliminate_entry_points` without printing the rounds again) | `calendar_calc.py` |
 | `earliest_dates(matrix, ranks)` | `earliest` (prints) | `calendar_calc.py` |
 | `latest_dates(matrix, ranks, earliest)` | `latest` (prints) | `calendar_calc.py` |
-| `compute_floats(earliest, latest)` | `floats` (prints) | `critical.py` |
+| `compute_floats(earliest, latest)` | `floats` (prints) | `calendar_calc.py` |
 | `critical_paths(matrix, earliest, floats)` | `critical_paths` (prints) | `critical.py` |
+| `display_results(tasks, ranks, earliest, latest, floats)` | — (prints one aligned table: vertex, duration, rank, E, L, float) | `critical.py` |
+| `recording(table_path)` | used as `with recording(path):` — shows everything on screen and saves the same text in `traces/` | `trace.py` |
 
 **Rule:** computing functions **return** their result and **print** the trace the subject asks for. Need a new shared function or name? Tell the group first, then add it here.
 

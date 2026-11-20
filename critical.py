@@ -1,4 +1,4 @@
-# critical.py — Member 5 (issue #6) · checked by Member 1
+# critical.py — Mayer (issue #6) · checked by Nancy
 # Critical paths and the final results table, each with its trace.
 #
 # Functions to write — shared names, do not rename them (README, section 4):

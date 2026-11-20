@@ -1,4 +1,4 @@
-# trace.py — Member 4 (issue #5) · checked by Member 5
+# trace.py — Lea (issue #5) · checked by Mayer
 # Saves what the program prints for one table into traces/, for Moodle.
 #
 # Function to write — shared name, do not rename it (README, section 4):

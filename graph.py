@@ -1,4 +1,4 @@
-# graph.py — Member 2 (issue #3) · checked by Member 3
+# graph.py — Kirolos (issue #3) · checked by Lea
 # Builds the scheduling graph (with vertices 0 and n+1), its value matrix,
 # and checks the edge weights.
 #
@@ -10,4 +10,4 @@
 #   predecessors(matrix, v) / successors(matrix, v) -> list of vertices
 #   check_weights(matrix)      -> True / False (same weight leaving a vertex,
 #                                 edges from 0 weigh 0, no negative edge)
-# Merge build_matrix, predecessors and successors first: Members 3, 4, 5 use them.
+# Merge build_matrix, predecessors and successors first: Audrey, Lea and Mayer use them.

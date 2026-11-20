@@ -1,4 +1,4 @@
-# checks.py — Member 3 (issue #4) · checked by Member 4
+# checks.py — Audrey (issue #4) · checked by Kirolos
 # One entry point, one exit point, no cycle, then the final verdict.
 #
 # Functions to write — shared names, do not rename them (README, section 4):

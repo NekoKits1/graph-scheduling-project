@@ -27,17 +27,17 @@ No installation needed: Python 3.10+ only.
 
 ## 2. Team
 
-| Member | Codes | Files | Checks | Issue |
+| Member | Codes | Files | Checked by | Issue |
 |---|---|---|---|---|
-| Member 1 | Reading a table and displaying it; the menu loop and `--all` | `reader.py`, `main.py` | Member 2 | #2 |
-| Member 2 | Edges with 0 and N+1, value matrix, their display, predecessors / successors, the three weight checks | `graph.py` | Member 3 | #3 |
-| Member 3 | One entry, one exit, no cycle (elimination of entry points), the final verdict | `checks.py` | Member 4 | #4 |
-| Member 4 | Ranks, earliest and latest dates, floats; saving each run in `traces/` | `calendar_calc.py`, `trace.py` | Member 5 | #5 |
-| Member 5 | All critical paths, the final results table | `critical.py` | Member 1 | #6 |
+| Nancy | Reading a table and displaying it; the menu loop and `--all` | `reader.py`, `main.py` | Audrey | #2 |
+| Kirolos | Edges with 0 and N+1, value matrix, their display, predecessors / successors, the three weight checks | `graph.py` | Lea | #3 |
+| Audrey | One entry, one exit, no cycle (elimination of entry points), the final verdict | `checks.py` | Kirolos | #4 |
+| Lea | Ranks, earliest and latest dates, floats; saving each run in `traces/` | `calendar_calc.py`, `trace.py` | Mayer | #5 |
+| Mayer | All critical paths, the final results table | `critical.py` | Nancy | #6 |
+
+**Checking chain:** Audrey checks Nancy → Nancy checks Mayer → Mayer checks Lea → Lea checks Kirolos → Kirolos checks Audrey.
 
 Everyone also adds **two tables** of their own to `tables/` (with results solved by hand) and writes the **tests of their own file** in `tests/`. The checker uses the checklist of that part in the Google Doc (section 6) before approving.
-
-Replace "Member N" with our names.
 
 ---
 
@@ -45,13 +45,13 @@ Replace "Member N" with our names.
 
 ```
 graph-scheduling-project/
-├── main.py            → the menu loop (Member 1)
-├── reader.py          → read a .txt table, display it (Member 1)
-├── graph.py           → edges, value matrix, predecessors / successors, weight checks (Member 2)
-├── checks.py          → entry, exit and cycle checks, final verdict (Member 3)
-├── calendar_calc.py   → ranks, earliest and latest dates, floats (Member 4)
-├── trace.py           → recording(path): saves each run in traces/ (Member 4)
-├── critical.py        → critical paths, final results table (Member 5)
+├── main.py            → the menu loop (Nancy)
+├── reader.py          → read a .txt table, display it (Nancy)
+├── graph.py           → edges, value matrix, predecessors / successors, weight checks (Kirolos)
+├── checks.py          → entry, exit and cycle checks, final verdict (Audrey)
+├── calendar_calc.py   → ranks, earliest and latest dates, floats (Lea)
+├── trace.py           → recording(path): saves each run in traces/ (Lea)
+├── critical.py        → critical paths, final results table (Mayer)
 ├── tables/            → our .txt tables, then the teacher's
 ├── traces/            → saved outputs for Moodle
 ├── tests/             → automatic tests (the hand-solved example)
@@ -109,13 +109,13 @@ Nobody has to wait to start: if what you need isn't merged yet, type the example
 
 | What | Made by | Needed by | Until it is merged, use | Merge by |
 |---|---|---|---|---|
-| `build_matrix`, `predecessors`, `successors` | Member 2 | Members 3, 4, 5 | the matrix of step C typed by hand | Sun 22 Nov |
-| `read_table` (`tasks`, `n`) | Member 1 | Member 2 (real files) | the `tasks` dict of section 4 typed by hand | Sun 22 Nov |
-| `check_weights` | Member 2 | Member 3 (`is_scheduling_graph`) | count the weight checks as passed | Mon 23 Nov |
-| `eliminate_entry_points` | Member 3 | Member 4 (`compute_ranks`) | `[[0], [1, 2], [3, 4], [5], [6]]`, `[]` | Mon 23 Nov |
-| `ranks`, `earliest`, `latest`, `floats` | Member 4 | Member 5 | the values of step F typed by hand | Wed 25 Nov |
-| `recording(path)` | Member 4 | Member 1 (`main.py`) | run without it | Wed 25 Nov |
-| every function above | Members 2–5 | Member 1 (`main.py`) | write the loop with the calls in place | Wed 25 Nov, then connect 26–28 Nov |
+| `build_matrix`, `predecessors`, `successors` | Kirolos | Audrey, Lea, Mayer | the matrix of step C typed by hand | Sun 22 Nov |
+| `read_table` (`tasks`, `n`) | Nancy | Kirolos (real files) | the `tasks` dict of section 4 typed by hand | Sun 22 Nov |
+| `check_weights` | Kirolos | Audrey (`is_scheduling_graph`) | count the weight checks as passed | Mon 23 Nov |
+| `eliminate_entry_points` | Audrey | Lea (`compute_ranks`) | `[[0], [1, 2], [3, 4], [5], [6]]`, `[]` | Mon 23 Nov |
+| `ranks`, `earliest`, `latest`, `floats` | Lea | Mayer | the values of step F typed by hand | Wed 25 Nov |
+| `recording(path)` | Lea | Nancy (`main.py`) | run without it | Wed 25 Nov |
+| every function above | Kirolos, Audrey, Lea, Mayer | Nancy (`main.py`) | write the loop with the calls in place | Wed 25 Nov, then connect 26–28 Nov |
 
 **Merge order:** `graph.py` → `reader.py`, `checks.py` → `calendar_calc.py`, `trace.py` → `critical.py` → `main.py`.
 
@@ -137,7 +137,7 @@ Nobody has to wait to start: if what you need isn't merged yet, type the example
 ## 7. How we work with Git
 
 - `main` always works and is protected: code arrives only through a **pull request approved by the checker**, with the CI passing.
-- One short branch per task, from the latest `main`, named `firstname/task`: `nancy/value-matrix`, `amine/checks`. Deleted after merge.
+- One short branch per task, from the latest `main`, named `firstname/task`: `kirolos/value-matrix`, `audrey/checks`. Deleted after merge.
 - Commit messages: `type(file): what changed` — `feat(graph): build value matrix`, `fix(checks): detect cycle on disconnected graph`, `test: add table with N = 12`.
 
 **For each task**

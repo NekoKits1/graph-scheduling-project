@@ -1,4 +1,4 @@
-# calendar_calc.py — Member 4 (issue #5) · checked by Member 5
+# calendar_calc.py — Lea (issue #5) · checked by Mayer
 # Ranks, earliest dates, latest dates and floats, each with its trace.
 #
 # Functions to write — shared names, do not rename them (README, section 4):

@@ -1,4 +1,4 @@
-# main.py — Member 1 (issue #2) · checked by Member 2
+# main.py — Nancy (issue #2) · checked by Audrey
 # The loop from the subject's pseudo-code: choose a table in tables/, run every step,
 # then ask for another table, without restarting the program.
 #

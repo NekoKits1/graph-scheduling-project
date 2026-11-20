@@ -30,8 +30,8 @@ No installation needed: Python 3.10+ only.
 | Member | Codes | Files | Checks | Issue |
 |---|---|---|---|---|
 | Member 1 | Reading a table and displaying it; the menu loop and `--all` | `reader.py`, `main.py` | Member 2 | #2 |
-| Member 2 | Edges with 0 and N+1, value matrix, their display, predecessors / successors | `graph.py` | Member 3 | #3 |
-| Member 3 | The six properties, elimination of entry points (cycle detection) | `checks.py` | Member 4 | #4 |
+| Member 2 | Edges with 0 and N+1, value matrix, their display, predecessors / successors, the three weight checks | `graph.py` | Member 3 | #3 |
+| Member 3 | One entry, one exit, no cycle (elimination of entry points), the final verdict | `checks.py` | Member 4 | #4 |
 | Member 4 | Ranks, earliest and latest dates, floats; saving each run in `traces/` | `calendar_calc.py`, `trace.py` | Member 5 | #5 |
 | Member 5 | All critical paths, the final results table | `critical.py` | Member 1 | #6 |
 
@@ -47,8 +47,8 @@ Replace "Member N" with our names.
 graph-scheduling-project/
 ├── main.py            → the menu loop (Member 1)
 ├── reader.py          → read a .txt table, display it (Member 1)
-├── graph.py           → edges, value matrix, predecessors / successors (Member 2)
-├── checks.py          → the six properties, elimination of entry points (Member 3)
+├── graph.py           → edges, value matrix, predecessors / successors, weight checks (Member 2)
+├── checks.py          → entry, exit and cycle checks, final verdict (Member 3)
 ├── calendar_calc.py   → ranks, earliest and latest dates, floats (Member 4)
 ├── trace.py           → recording(path): saves each run in traces/ (Member 4)
 ├── critical.py        → critical paths, final results table (Member 5)
@@ -88,8 +88,9 @@ Each file starts with a short comment: who codes it, its issue, and the function
 | `build_matrix(edges, n)` | `matrix` | `graph.py` |
 | `display_matrix(matrix)` | — (prints) | `graph.py` |
 | `predecessors(matrix, v)` / `successors(matrix, v)` | list of vertices | `graph.py` |
+| `check_weights(matrix)` | `True` / `False` (prints one line per weight check: same weight leaving a vertex, edges from 0 weigh 0, no negative edge) | `graph.py` |
 | `eliminate_entry_points(matrix, show_trace)` | `rounds, remaining` (prints each round if `show_trace`) | `checks.py` |
-| `is_scheduling_graph(matrix)` | `True` / `False` (prints each check) | `checks.py` |
+| `is_scheduling_graph(matrix)` | `True` / `False` (prints the entry, exit and cycle checks, uses `check_weights`, prints the verdict) | `checks.py` |
 | `compute_ranks(matrix)` | `ranks` or `None` (uses `eliminate_entry_points` without printing the rounds again) | `calendar_calc.py` |
 | `earliest_dates(matrix, ranks)` | `earliest` (prints) | `calendar_calc.py` |
 | `latest_dates(matrix, ranks, earliest)` | `latest` (prints) | `calendar_calc.py` |
@@ -102,7 +103,25 @@ Each file starts with a short comment: who codes it, its issue, and the function
 
 ---
 
-## 5. Writing rules
+## 5. Who waits for whom
+
+Nobody has to wait to start: if what you need isn't merged yet, type the example values (Google Doc, section 2) by hand in your tests, then replace them with the real call once it is on `main`.
+
+| What | Made by | Needed by | Until it is merged, use | Merge by |
+|---|---|---|---|---|
+| `build_matrix`, `predecessors`, `successors` | Member 2 | Members 3, 4, 5 | the matrix of step C typed by hand | Sun 22 Nov |
+| `read_table` (`tasks`, `n`) | Member 1 | Member 2 (real files) | the `tasks` dict of section 4 typed by hand | Sun 22 Nov |
+| `check_weights` | Member 2 | Member 3 (`is_scheduling_graph`) | count the weight checks as passed | Mon 23 Nov |
+| `eliminate_entry_points` | Member 3 | Member 4 (`compute_ranks`) | `[[0], [1, 2], [3, 4], [5], [6]]`, `[]` | Mon 23 Nov |
+| `ranks`, `earliest`, `latest`, `floats` | Member 4 | Member 5 | the values of step F typed by hand | Wed 25 Nov |
+| `recording(path)` | Member 4 | Member 1 (`main.py`) | run without it | Wed 25 Nov |
+| every function above | Members 2–5 | Member 1 (`main.py`) | write the loop with the calls in place | Wed 25 Nov, then connect 26–28 Nov |
+
+**Merge order:** `graph.py` → `reader.py`, `checks.py` → `calendar_calc.py`, `trace.py` → `critical.py` → `main.py`.
+
+---
+
+## 6. Writing rules
 
 | What | Rule | Example |
 |---|---|---|
@@ -115,7 +134,7 @@ Each file starts with a short comment: who codes it, its issue, and the function
 
 ---
 
-## 6. How we work with Git
+## 7. How we work with Git
 
 - `main` always works and is protected: code arrives only through a **pull request approved by the checker**, with the CI passing.
 - One short branch per task, from the latest `main`, named `firstname/task`: `nancy/value-matrix`, `amine/checks`. Deleted after merge.
@@ -133,7 +152,7 @@ Each file starts with a short comment: who codes it, its issue, and the function
 
 ---
 
-## 7. Tests
+## 8. Tests
 
 - Each member writes the tests for their file in `tests/` (see `tests/README.md`), using the hand-solved example of the Google Doc (section 2) as expected results.
 - Every new table in `tables/` comes with its expected results written by hand (see `tables/README.md`).

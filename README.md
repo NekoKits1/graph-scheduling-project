@@ -109,13 +109,13 @@ Nobody has to wait to start: if what you need isn't merged yet, type the example
 
 | What | Made by | Needed by | Until it is merged, use | Merge by |
 |---|---|---|---|---|
-| `build_matrix`, `predecessors`, `successors` | Kirolos | Audrey, Lea, Mayer | the matrix of step C typed by hand | Sun 22 Nov |
-| `read_table` (`tasks`, `n`) | Nancy | Kirolos (real files) | the `tasks` dict of section 4 typed by hand | Sun 22 Nov |
-| `check_weights` | Kirolos | Audrey (`is_scheduling_graph`) | count the weight checks as passed | Mon 23 Nov |
-| `eliminate_entry_points` | Audrey | Lea (`compute_ranks`) | `[[0], [1, 2], [3, 4], [5], [6]]`, `[]` | Mon 23 Nov |
-| `ranks`, `earliest`, `latest`, `floats` | Lea | Mayer | the values of step F typed by hand | Wed 25 Nov |
-| `recording(path)` | Lea | Nancy (`main.py`) | run without it | Wed 25 Nov |
-| every function above | Kirolos, Audrey, Lea, Mayer | Nancy (`main.py`) | write the loop with the calls in place | Wed 25 Nov, then connect 26–28 Nov |
+| `build_matrix`, `predecessors`, `successors` | Kirolos | Audrey, Lea, Mayer | the matrix of step C typed by hand | Mon 23 Nov |
+| `read_table` (`tasks`, `n`) | Nancy | Kirolos (real files) | the `tasks` dict of section 4 typed by hand | Mon 23 Nov |
+| `check_weights` | Kirolos | Audrey (`is_scheduling_graph`) | count the weight checks as passed | Tue 24 Nov |
+| `eliminate_entry_points` | Audrey | Lea (`compute_ranks`) | `[[0], [1, 2], [3, 4], [5], [6]]`, `[]` | Tue 24 Nov |
+| `ranks`, `earliest`, `latest`, `floats` | Lea | Mayer | the values of step F typed by hand | Fri 27 Nov |
+| `recording(path)` | Lea | Nancy (`main.py`) | run without it | Fri 27 Nov |
+| every function above | Kirolos, Audrey, Lea, Mayer | Nancy (`main.py`) | write the loop with the calls in place | Sun 29 Nov, then connect 30 Nov – 1 Dec |
 
 **Merge order:** `graph.py` → `reader.py`, `checks.py` → `calendar_calc.py`, `trace.py` → `critical.py` → `main.py`.
 

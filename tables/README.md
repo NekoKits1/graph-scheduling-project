@@ -8,7 +8,9 @@ Our constraint tables (.txt), then the teacher's official ones. Owner: Nancy (is
 | File | What it tests | Expected |
 |---|---|---|
 | `table_01_subject_example.txt` | The subject's example (Google Doc, section 2) | Valid; critical path 0 → 2 → 4 → 5 → 6, length 11 |
-| `table_02_cycle.txt` | A cycle 1 → 2 → 3 → 1 | Not a scheduling graph, no ranks |
+| `table_02_cycle.txt` | A cycle 1 → 2 → 3 → 1 | Not a scheduling graph: every task is in the cycle, so 0 and N+1 are both entry and exit points, and the elimination is stuck at once |
+| `table_03_cycle_middle.txt` (Audrey) | A cycle in the middle: tasks 2 and 3 wait for each other | One entry (0), one exit (5); elimination: rounds `[0]`, `[1]`, then stuck with 2 3 4 5 left → cycle, not a scheduling graph |
+| `table_04_two_chains.txt` (Audrey) | Two separate chains 1 → 3 and 2 → 4, joined by 0 and 5 | Valid; elimination rounds `[0]`, `[1, 2]`, `[3, 4]`, `[5]` |
 
 ### The teacher's tables (received 17 Nov)
 

@@ -35,6 +35,19 @@ class TestReadTable(unittest.TestCase):
         tasks, n = read_table("tables/table_01_subject_example.txt")
         display_constraint_table(tasks)
 
+    def test_teacher_table_odd_format(self):
+        """T13 has Windows line endings, an empty first line and no final newline."""
+        tasks, n = read_table("tables/table_T13_teacher.txt")
+        self.assertEqual(n, 4)
+        self.assertEqual(tasks[2], {"duration": 2, "preds": [1, 3]})
+        self.assertEqual(tasks[4], {"duration": 7, "preds": [3]})
+
+    def test_all_teacher_tables(self):
+        """Every teacher table reads with tasks numbered 1 to n."""
+        for i in range(1, 15):
+            tasks, n = read_table(f"tables/table_T{i:02d}_teacher.txt")
+            self.assertEqual(sorted(tasks), list(range(1, n + 1)), f"table T{i:02d}")
+
 
 if __name__ == "__main__":
     unittest.main()

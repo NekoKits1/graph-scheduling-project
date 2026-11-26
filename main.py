@@ -82,11 +82,19 @@ def run_one_table(path):
     graph = load("graph", "build_edges", "display_edges", "build_matrix", "display_matrix")
     if graph is None:
         return not_ready("Step 2 (graph.py)")
+
     build_edges, display_edges, build_matrix, display_matrix = graph
-    edges = build_edges(tasks, n)
+
+    try:
+        edges = build_edges(tasks, n)
+    except ValueError as error:
+        print(f"Invalid constraint table: {error}")
+        return
+
     display_edges(edges, n)
     matrix = build_matrix(edges, n)
     display_matrix(matrix)
+
 
     # Step 3 — Scheduling-graph properties
     checks = load("checks", "is_scheduling_graph")

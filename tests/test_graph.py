@@ -70,7 +70,19 @@ class TestGraph(unittest.TestCase):
     def test_zero_duration(self):
         tasks = {1: {'duration': 0, 'preds': []}}
         self.assertEqual(build_edges(tasks, 1), [(0, 1, 0), (1, 2, 0)])
+    
+    def test_unknown_predecessor(self):
+        """Reject predecessors that do not exist in the table."""
+        tasks = {
+            1: {"duration": 2, "preds": []},
+            2: {"duration": 3, "preds": [9]}
+        }
 
+        with self.assertRaisesRegex(
+            ValueError,
+            "Task 2 has predecessor 9, which is not in the table"
+        ):
+            build_edges(tasks, 2)
 
 if __name__ == '__main__':
     unittest.main()

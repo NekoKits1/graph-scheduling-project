@@ -13,24 +13,24 @@ def format_vertices(vertices):
     """Return the vertices as '1 2 3', or 'None' when the list is empty."""
     return " ".join(str(v) for v in vertices) if vertices else "None"
 
-# return our α (alpha) vertice
 def entry_points(matrix):
+    """Return the vertices with no incoming edge (empty column)."""
     result=[]
     for v in range(len(matrix)):
         if not(predecessors(matrix, v)):
             result.append(v)
     return result
 
-# return our ω (omega) vertice
 def exit_points(matrix):
+    """Return the vertices with no outgoing edge (empty row)."""
     result=[]
     for v in range(len(matrix)):
         if not(successors(matrix,v)):
             result.append(v)
     return result
 
-#remove the entry points rounds by rounds and return rounds
 def eliminate_entry_points(matrix, show_trace):
+    """Remove the entry points round by round; return rounds and the vertices left."""
     remaining = list(range(len(matrix)))
     rounds = []
     if show_trace:
@@ -57,8 +57,8 @@ def eliminate_entry_points(matrix, show_trace):
     return rounds, remaining
 
 
-#check the properties of a valid scheduling graph and print them with the verdict
 def is_scheduling_graph(matrix):
+    """Check the six properties of a scheduling graph; print each one and the verdict."""
     print("\n* Checking the scheduling-graph properties")
     last = len(matrix) - 1  # vertex N+1 (omega)
 
